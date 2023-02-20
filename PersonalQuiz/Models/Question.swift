@@ -29,7 +29,7 @@ struct Question {
                     Answer(title: "Плавать", animal: .dog),
                     Answer(title: "Спать", animal: .cat),
                     Answer(title: "Обниматься", animal: .rabbit),
-                    Answer(title: "Есть", animal: .rabbit)
+                    Answer(title: "Есть", animal: .turtle)
                 ]
             ),
             Question(
