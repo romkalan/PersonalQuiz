@@ -12,7 +12,7 @@ class ResultViewController: UIViewController {
     @IBOutlet var emojiAnimalLabel: UILabel!
     @IBOutlet var definitionAnimalLabel: UILabel!
     
-    var answersChosen: [Answer] = []
+    var answersChosen: [Answer]!
     
     private var catCount = 0
     private var dogCount = 0
@@ -22,7 +22,9 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.setHidesBackButton(true, animated: false)
+        
         let animals = collectAnimals(from: answersChosen)
+        
         calculateAnimals(from: animals)
         identifyAnimal()
     }
@@ -63,6 +65,21 @@ private extension ResultViewController {
         
     func identifyAnimal() {
         
+        let animalsCount: [Animal: Int] = [
+            .cat: catCount,
+            .dog: dogCount,
+            .turtle: turtleCount,
+            .rabbit: rabbitCount
+        ]
+        
+        let animalSorted = animalsCount.sorted { $0.value > $1.value }
+        guard let currentAnimal = animalSorted.first?.key else { return }
+        
+        definitionAnimalLabel.text = currentAnimal.definition
+        emojiAnimalLabel.text = "Вы - \(currentAnimal.rawValue)"
+    }
+    
+    func identifyAnimalComparison() {
         let currentAnimal: Animal
         
         if catCount >= dogCount && catCount >= turtleCount && catCount >= rabbitCount {
