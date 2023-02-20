@@ -52,7 +52,6 @@ private extension ResultViewController {
     }
     
     func calculateAnimals(from animals: [Animal]) {
-        
         for animal in animals {
             switch animal {
             case .cat: catCount += 1
@@ -64,7 +63,6 @@ private extension ResultViewController {
     }
         
     func identifyAnimal() {
-        
         let animalsCount: [Animal: Int] = [
             .cat: catCount,
             .dog: dogCount,
@@ -74,23 +72,6 @@ private extension ResultViewController {
         
         let animalSorted = animalsCount.sorted { $0.value > $1.value }
         guard let currentAnimal = animalSorted.first?.key else { return }
-        
-        definitionAnimalLabel.text = currentAnimal.definition
-        emojiAnimalLabel.text = "Вы - \(currentAnimal.rawValue)"
-    }
-    
-    func identifyAnimalComparison() {
-        let currentAnimal: Animal
-        
-        if catCount >= dogCount && catCount >= turtleCount && catCount >= rabbitCount {
-            currentAnimal = .cat
-        } else if dogCount >= catCount && dogCount >= turtleCount && dogCount >= rabbitCount {
-            currentAnimal = .dog
-        } else if turtleCount >= catCount && turtleCount >= dogCount && turtleCount >= rabbitCount {
-            currentAnimal = .turtle
-        } else {
-            currentAnimal = .rabbit
-        }
         
         definitionAnimalLabel.text = currentAnimal.definition
         emojiAnimalLabel.text = "Вы - \(currentAnimal.rawValue)"
