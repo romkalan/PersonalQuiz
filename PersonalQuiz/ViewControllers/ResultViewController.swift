@@ -21,12 +21,10 @@ class ResultViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.setHidesBackButton(true, animated: false)
-        
         let animals = collectAnimals(from: answersChosen)
-        
         calculateAnimals(from: animals)
         identifyAnimal()
+        navigationItem.setHidesBackButton(true, animated: false)
     }
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
