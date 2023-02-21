@@ -13,11 +13,7 @@ class ResultViewController: UIViewController {
     @IBOutlet var definitionAnimalLabel: UILabel!
     
     var answersChosen: [Answer]!
-    
-    private var catCount = 0
-    private var dogCount = 0
-    private var turtleCount = 0
-    private var rabbitCount = 0
+    var animalsCount: [Animal: Int]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,26 +47,19 @@ private extension ResultViewController {
     
     func calculateAnimals(from animals: [Animal]) {
         for animal in animals {
-            switch animal {
-            case .cat: catCount += 1
-            case .dog: dogCount += 1
-            case .turtle: turtleCount += 1
-            case .rabbit: rabbitCount += 1
+            if animalsCount[animal] == nil {
+                animalsCount.updateValue(1, forKey: animal)
+            } else {
+                animalsCount[animal]! += 1
             }
         }
     }
         
     func identifyAnimal() {
-        let animalsCount: [Animal: Int] = [
-            .cat: catCount,
-            .dog: dogCount,
-            .turtle: turtleCount,
-            .rabbit: rabbitCount
-        ]
-        
+
         let animalSorted = animalsCount.sorted { $0.value > $1.value }
         guard let currentAnimal = animalSorted.first?.key else { return }
-        
+
         definitionAnimalLabel.text = currentAnimal.definition
         emojiAnimalLabel.text = "Вы - \(currentAnimal.rawValue)"
     }
