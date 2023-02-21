@@ -46,12 +46,14 @@ private extension ResultViewController {
     }
     
     func calculateAnimals(from animals: [Animal]) {
-        for animal in animals {
-            if animalsCount[animal] == nil {
-                animalsCount.updateValue(1, forKey: animal)
-            } else {
-                animalsCount[animal]! += 1
-            }
+        for _ in animals {
+//            for key in animalsCount.keys {
+//                if animal != key {
+//                    animalsCount.updateValue(1, forKey: animal)
+//                } else {
+//                    animalsCount[animal]! += 1
+//                }
+//            }
         }
     }
         
