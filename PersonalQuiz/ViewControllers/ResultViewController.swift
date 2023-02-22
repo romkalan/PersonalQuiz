@@ -13,12 +13,12 @@ class ResultViewController: UIViewController {
     @IBOutlet var definitionAnimalLabel: UILabel!
     
     var answersChosen: [Answer]!
-    var animalsCount: [Animal: Int]!
+    var animalsCount: [Animal: Int] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let animals = collectAnimals(from: answersChosen)
-        calculateAnimals(from: animals)
+        calculateAnimal(from: animals)
         identifyAnimal()
         navigationItem.setHidesBackButton(true, animated: false)
     }
@@ -45,11 +45,24 @@ private extension ResultViewController {
         return animals
     }
     
+    // Сложный способ
     func calculateAnimals(from animals: [Animal]) {
         animalsCount = animals.reduce(into: [:], { animalsCount, animal in animalsCount[animal] = 0 })
-        
+
         for animal in animals {
             animalsCount[animal]! += 1
+        }
+    }
+    
+    
+    // Простой способ
+    func calculateAnimal(from animals: [Animal]) {
+        for animal in animals {
+            if let animalCount = animalsCount[animal] {
+                animalsCount.updateValue(animalCount + 1, forKey: animal)
+            } else {
+                animalsCount.updateValue(1, forKey: animal)
+            }
         }
     }
         
