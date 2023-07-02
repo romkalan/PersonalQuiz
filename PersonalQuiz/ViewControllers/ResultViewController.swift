@@ -2,7 +2,7 @@
 //  ResultViewController.swift
 //  PersonalQuiz
 //
-//  Created by Alexey Efimov on 19.02.2023.
+//  Created by Roman Lantsov on 19.02.2023.
 //
 
 import UIKit
